@@ -1,0 +1,78 @@
+﻿<Window x:Class="Hostel223.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Hostel223 - Панель менеджера" 
+        Height="500" 
+        Width="700"
+        WindowStartupLocation="CenterScreen">
+
+    <DockPanel>
+        <!-- Header -->
+        <Border DockPanel.Dock="Top" Background="#107C10" Padding="15">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Панель менеджера" 
+                           FontSize="18" 
+                           FontWeight="Bold" 
+                           Foreground="White"/>
+
+                <TextBlock x:Name="UserInfoTextBlock" 
+                           Margin="20,0,0,0"
+                           FontSize="14"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Content -->
+        <StackPanel Margin="20">
+            <TextBlock Text="Функции менеджера:" 
+                       FontSize="16" 
+                       FontWeight="Bold" 
+                       Margin="0,0,0,20"/>
+
+            <StackPanel Orientation="Vertical" Margin="0,10">
+                <Button Content="Бронирование номеров" 
+                        Width="200" 
+                        Height="35" 
+                        Margin="0,5"
+                        FontWeight="Bold"/>
+
+                <Button Content="Просмотр бронирований" 
+                        Width="200" 
+                        Height="35" 
+                        Margin="0,5"
+                        FontWeight="Bold"/>
+
+                <Button Content="Управление клиентами" 
+                        Width="200" 
+                        Height="35" 
+                        Margin="0,5"
+                        FontWeight="Bold"/>
+
+                <Button Content="Отчеты по загрузке" 
+                        Width="200" 
+                        Height="35" 
+                        Margin="0,5"
+                        FontWeight="Bold"/>
+            </StackPanel>
+
+            <TextBlock Text="Последние бронирования:" 
+                       FontSize="14" 
+                       FontWeight="Bold" 
+                       Margin="0,30,0,10"/>
+
+            <ListView Height="150">
+                <ListViewItem>Номер 101 - Иванов И.И. (01.01-05.01)</ListViewItem>
+                <ListViewItem>Номер 102 - Петров П.П. (02.01-07.01)</ListViewItem>
+                <ListViewItem>Номер 201 - Сидоров С.С. (03.01-10.01)</ListViewItem>
+            </ListView>
+
+            <Button Content="Выйти" 
+                    Click="LogoutButton_Click" 
+                    Width="100" 
+                    Height="30" 
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"/>
+        </StackPanel>
+    </DockPanel>
+</Window>
