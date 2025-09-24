@@ -6,6 +6,7 @@ namespace Hostel223
     {
         public MainWindow()
         {
+            InitializeComponent();
         }
 
         public MainWindow(Database.User user)
@@ -36,6 +37,16 @@ namespace Hostel223
                 MessageBox.Show("Неверный логин или пароль", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Открываем окно регистрации
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+
+            // Закрываем текущее окно авторизации
+            this.Close();
         }
 
         private void OpenRoleWindow(Database.User user)
