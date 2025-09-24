@@ -11,6 +11,7 @@ namespace Hostel223
             new User { Id = 2, FullName = "Менеджер Иванов", Login = "manager", Password = "manager", Role = "Менеджер" },
             new User { Id = 3, FullName = "Гость Петров", Login = "guest", Password = "guest", Role = "Гость" }
         };
+        public static object Rooms { get; internal set; }
 
         public static User Authenticate(string login, string password)
         {

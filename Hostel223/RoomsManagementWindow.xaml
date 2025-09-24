@@ -1,0 +1,87 @@
+﻿<Window x:Class="Hostel223.RoomsManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление номерами" 
+        Height="671" 
+        Width="900"
+        WindowStartupLocation="CenterScreen">
+
+    <DockPanel>
+        <!-- Header -->
+        <Border DockPanel.Dock="Top" Background="#0078D7" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Управление номерами" 
+                           FontSize="16" 
+                           FontWeight="Bold" 
+                           Foreground="White"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Toolbar -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10" Height="35">
+            <Button Content="Добавить номер" Width="120" Margin="5,0" Click="AddRoomButton_Click"/>
+            <Button Content="Редактировать" Width="100" Margin="5,0" Click="EditRoomButton_Click"/>
+            <Button Content="Удалить" Width="80" Margin="5,0" Click="DeleteRoomButton_Click"/>
+            <Button Content="Обновить" Width="80" Margin="5,0" Click="RefreshButton_Click"/>
+            <ComboBox x:Name="StatusFilterComboBox" Width="120" Margin="20,0,5,0" SelectionChanged="StatusFilterComboBox_SelectionChanged">
+                <ComboBoxItem Content="Все статусы" IsSelected="True"/>
+                <ComboBoxItem Content="Свободен"/>
+                <ComboBoxItem Content="Занят"/>
+                <ComboBoxItem Content="На обслуживании"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Rooms List -->
+        <DataGrid x:Name="RoomsDataGrid" 
+                  DockPanel.Dock="Top"
+                  Margin="10" 
+                  Height="400"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Номер" Width="60" Binding="{Binding Number}"/>
+                <DataGridTextColumn Header="Тип" Width="100" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Цена" Width="80" Binding="{Binding Price, StringFormat={}{0} руб.}"/>
+                <DataGridTextColumn Header="Статус" Width="100" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Описание" Width="*" Binding="{Binding Description}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Room Details -->
+        <GroupBox DockPanel.Dock="Bottom" Header="Информация о номере" Margin="10" Height="120">
+            <Grid Margin="5,0,5,0" Height="73">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Номер:" Margin="5"/>
+                <TextBlock x:Name="RoomNumberText" Grid.Row="0" Grid.Column="1" Text="" Margin="5"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Тип:" Margin="5"/>
+                <TextBlock x:Name="RoomTypeText" Grid.Row="0" Grid.Column="3" Text="" Margin="5"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Цена:" Margin="5"/>
+                <TextBlock x:Name="RoomPriceText" Grid.Row="1" Grid.Column="1" Text="" Margin="5"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Статус:" Margin="5"/>
+                <TextBlock x:Name="RoomStatusText" Grid.Row="1" Grid.Column="3" Text="" Margin="5"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Status Bar -->
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextBlock" Text="Готово"/>
+            </StatusBarItem>
+        </StatusBar>
+    </DockPanel>
+</Window>
