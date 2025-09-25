@@ -1,25 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-public static class Database
+namespace Hostel223
 {
-    public class User
+    public static class Database
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
-        public string FullName { get; set; }
-    }
+        public static List<User> Users { get; set; } = new List<User>
+        {
+            new User { Id = 1, FullName = "Администратор Системы", Login = "admin", Password = "admin", Role = "Администратор" },
+            new User { Id = 2, FullName = "Менеджер Иванов", Login = "manager", Password = "manager", Role = "Менеджер" },
+            new User { Id = 3, FullName = "Гость Петров", Login = "guest", Password = "guest", Role = "Гость" }
+        };
+        public static object Rooms { get; internal set; }
 
-    private static List<User> _users = new List<User>
-    {
-        new User { Login = "admin", Password = "admin123", Role = "Администратор", FullName = "Иван Петров" },
-        new User { Login = "manager", Password = "manager123", Role = "Менеджер", FullName = "Анна Сидорова" },
-        new User { Login = "guest", Password = "guest123", Role = "Гость", FullName = "Сергей Иванов" }
-    };
+        public static User Authenticate(string login, string password)
+        {
+            return Users.FirstOrDefault(u => u.Login == login && u.Password == password);
+        }
 
-    public static User Authenticate(string login, string password)
-    {
-        return _users.FirstOrDefault(u => u.Login == login && u.Password == password);
+        public class User
+        {
+            public int Id { get; set; }
+            public string FullName { get; set; }
+            public string Login { get; set; }
+            public string Password { get; set; }
+            public string Role { get; set; }
+        }
     }
 }
