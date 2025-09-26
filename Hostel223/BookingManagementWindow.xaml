@@ -1,0 +1,48 @@
+﻿<Window x:Class="Hostel223.BookingManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление бронированиями" 
+        Height="517" 
+        Width="909"
+        WindowStartupLocation="CenterScreen">
+
+    <DockPanel Margin="0,10,10,0">
+        <Border DockPanel.Dock="Top" Background="#107C10" Padding="10">
+            <TextBlock Text="Управление бронированиями" 
+                       FontSize="16" 
+                       FontWeight="Bold" 
+                       Foreground="White"/>
+        </Border>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10" Height="35">
+            <Button Content="Создать бронирование" Width="150" Margin="5,0" Click="CreateBookingButton_Click"/>
+            <Button Content="Редактировать" Width="100" Margin="5,0" Click="EditBookingButton_Click"/>
+            <Button Content="Отменить" Width="80" Margin="5,0" Click="CancelBookingButton_Click"/>
+            <Button Content="Подтвердить" Width="80" Margin="5,0" Click="ConfirmBookingButton_Click"/>
+            <Button Content="Обновить" Width="80" Margin="5,0" Click="RefreshButton_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="BookingsDataGrid" 
+                  Margin="10" 
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single" Width="683">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Клиент" Width="150" Binding="{Binding ClientName}"/>
+                <DataGridTextColumn Header="Номер" Width="80" Binding="{Binding RoomNumber}"/>
+                <DataGridTextColumn Header="Заезд" Width="100" Binding="{Binding CheckInDate, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Выезд" Width="100" Binding="{Binding CheckOutDate, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Статус" Width="100" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Стоимость" Width="80" Binding="{Binding TotalPrice, StringFormat={}₽}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Правильное размещение StatusBar -->
+        <StatusBar DockPanel.Dock="Bottom" Height="333" Width="165">
+            <StatusBarItem Width="81" Margin="0,40,0,121">
+                <TextBlock x:Name="StatusTextBlock" Text="Готово"/>
+            </StatusBarItem>
+        </StatusBar>
+    </DockPanel>
+</Window>

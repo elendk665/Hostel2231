@@ -1,0 +1,111 @@
+﻿<Window x:Class="Hostel223.CreateBookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Создание бронирования" 
+        Height="500" 
+        Width="550"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Создание нового бронирования" 
+                   FontSize="16" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Клиент:" VerticalAlignment="Center"/>
+        <ComboBox x:Name="ClientComboBox" Grid.Row="1" Grid.Column="1" Margin="5" Height="25"
+                  DisplayMemberPath="FullName"/>
+        <Button x:Name="AddClientButton" Grid.Row="1" Grid.Column="2" Content="+" 
+        Width="30" Height="25" Margin="5" Click="AddClientButton_Click"
+        ToolTip="Добавить нового клиента"/>
+
+       
+        <Label Grid.Row="2" Grid.Column="0" Content="Номер:" VerticalAlignment="Center"/>
+        <ComboBox x:Name="RoomComboBox" Grid.Row="2" Grid.Column="1" Margin="5" Height="25"
+                  DisplayMemberPath="Number" SelectionChanged="RoomComboBox_SelectionChanged"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Тип номера:" VerticalAlignment="Center"/>
+        <TextBlock x:Name="RoomTypeText" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Цена за ночь:" VerticalAlignment="Center"/>
+        <TextBlock x:Name="RoomPriceText" Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+
+        <Label Grid.Row="5" Grid.Column="0" Content="Дата заезда:" VerticalAlignment="Center"/>
+        <DatePicker x:Name="CheckInDatePicker" Grid.Row="5" Grid.Column="1" Margin="5" Height="25"
+                   SelectedDateChanged="Dates_Changed"/>
+
+        <Label Grid.Row="6" Grid.Column="0" Content="Дата выезда:" VerticalAlignment="Center"/>
+        <DatePicker x:Name="CheckOutDatePicker" Grid.Row="6" Grid.Column="1" Margin="5" Height="25"
+                   SelectedDateChanged="Dates_Changed"/>
+
+        <!-- Панель для создания нового клиента (изначально скрыта) -->
+        <Border x:Name="NewClientPanel" Grid.Row="7" Grid.ColumnSpan="3" 
+                BorderBrush="LightGray" BorderThickness="1" Margin="0,10" 
+                Padding="10" Background="#F5F5F5" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Добавление нового клиента" 
+                           FontWeight="Bold" Margin="0,0,0,5"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="ФИО:" VerticalAlignment="Center"/>
+                <TextBox x:Name="NewClientNameTextBox" Grid.Row="1" Grid.Column="1" Margin="5" Height="25"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Телефон:" VerticalAlignment="Center"/>
+                <TextBox x:Name="NewClientPhoneTextBox" Grid.Row="2" Grid.Column="1" Margin="5" Height="25"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Паспорт:" VerticalAlignment="Center"/>
+                <TextBox x:Name="NewClientPassportTextBox" Grid.Row="3" Grid.Column="1" Margin="5" Height="25"/>
+
+                <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" 
+                            HorizontalAlignment="Right" Margin="0,5">
+                    <Button Content="Сохранить" Width="80" Height="25" Margin="5" 
+                            Click="SaveNewClientButton_Click"/>
+                    <Button Content="Отмена" Width="80" Height="25" Margin="5" 
+                            Click="CancelNewClientButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="3" Orientation="Vertical" Margin="0,10">
+            <TextBlock Text="Информация о бронировании:" FontWeight="Bold" Margin="0,5"/>
+            <TextBlock x:Name="NightsText" Text="Количество ночей: 0" Margin="0,2"/>
+            <TextBlock x:Name="TotalPriceText" Text="Общая стоимость: 0₽" Margin="0,2"/>
+        </StackPanel>
+
+        <TextBlock x:Name="ErrorTextBlock" Grid.Row="9" Grid.ColumnSpan="3" 
+                   Foreground="Red" Margin="0,10" TextWrapping="Wrap" Visibility="Collapsed"/>
+
+        <StackPanel Grid.Row="9" Grid.ColumnSpan="3" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="0,10">
+            <Button Content="Создать" Width="100" Height="30" Margin="5" Click="CreateButton_Click"/>
+            <Button Content="Отмена" Width="80" Height="30" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

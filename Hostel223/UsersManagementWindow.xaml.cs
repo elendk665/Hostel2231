@@ -20,11 +20,10 @@ namespace Hostel223
 
         private void AddUserButton_Click(object sender, RoutedEventArgs e)
         {
-            // Открываем окно регистрации для добавления нового пользователя
             RegistrationWindow registrationWindow = new RegistrationWindow();
             if (registrationWindow.ShowDialog() == true)
             {
-                LoadUsers(); // Обновляем список после добавления
+                LoadUsers();
             }
         }
 
@@ -38,9 +37,13 @@ namespace Hostel223
                 return;
             }
 
-            // Здесь можно создать окно редактирования пользователя
-            MessageBox.Show($"Редактирование пользователя: {selectedUser.FullName}",
-                "Редактирование", MessageBoxButton.OK, MessageBoxImage.Information);
+            UserEditWindow editWindow = new UserEditWindow(selectedUser);
+            if (editWindow.ShowDialog() == true)
+            {
+                LoadUsers();
+                MessageBox.Show("Данные пользователя обновлены", "Успех",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e)

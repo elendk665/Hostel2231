@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Управление пользователями" 
-        Height="500" 
-        Width="800"
+        Height="588" 
+        Width="810"
         WindowStartupLocation="CenterScreen">
 
     <DockPanel>
@@ -43,7 +43,7 @@
 
         <!-- Status Bar -->
         <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem>
+            <StatusBarItem Height="68" Width="82">
                 <TextBlock x:Name="StatusTextBlock" Text="Готово"/>
             </StatusBarItem>
         </StatusBar>
